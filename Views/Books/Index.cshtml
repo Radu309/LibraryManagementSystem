@@ -1,0 +1,65 @@
+@using Azure.Core
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Books</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-primary">Create New Book</a>
+}
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="form-inline">
+        <label for="title" class="mr-2">Title:</label>
+        <input type="text" name="title" class="form-control mr-3"
+               value="@(ViewContext.HttpContext.Request.Query["title"])" />
+
+        <label for="author" class="mr-2">Author:</label>
+        <input type="text" name="author" class="form-control mr-3"
+               value="@(ViewContext.HttpContext.Request.Query["author"])"  />
+
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="Index" class="btn btn-secondary ml-2">Clear</a>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Title)</th>
+        <th>@Html.DisplayNameFor(model => model.Author)</th>
+        <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+        <th>@Html.DisplayNameFor(model => model.AvailableCopies)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            <td>@Html.DisplayFor(modelItem => item.Author)</td>
+            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+            <td>@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+                <form asp-action="Borrow" asp-route-id="@item.Id" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-outline-success" @(item.AvailableCopies == 0 ? "disabled" : "")>Borrow</button>
+                </form>
+
+                <form asp-action="Return" asp-route-id="@item.Id" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-outline-warning" @(item.AvailableCopies == item.Quantity ? "disabled" : "")>Return</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
