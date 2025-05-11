@@ -1,6 +1,8 @@
-﻿namespace LibraryManagementSystem.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
-public class User
+namespace LibraryManagementSystem.Models;
+
+public class User : IdentityUser
 {
-    
 }
