@@ -25,34 +25,33 @@ Technologies:
 Steps to Run the Application:
 
 1. Clone the Repository
-   git clone https://github.com/Radu309/LibraryManagementSystem.git
-   cd LibraryManagementSystem
+   - git clone https://github.com/Radu309/LibraryManagementSystem.git
+   - cd LibraryManagementSystem
 
 2. Restore Dependencies
-   dotnet restore
+   - dotnet restore
 
 3. Configure PostgreSQL Connection
-   Open appsettings.json and replace the connection string with your PostgreSQL database details. Example:
-   "ConnectionStrings": {
+   - Open appsettings.json and replace the connection string with your PostgreSQL database details. Example:
+   - "ConnectionStrings": {
    "DefaultConnection": "Host=localhost;Port=5432;Database=LibraryDB;Username=youruser;Password=yourpassword"
    }
 
 4. Apply Database Migrations
-   Make sure EF CLI is installed using: dotnet tool install --global dotnet-ef
-   Then run:
-   dotnet ef database update
+   - Make sure EF CLI is installed using: dotnet tool install --global dotnet-ef
+   - Then run:
+   - dotnet ef database update
 
 5. Run the Application
-   dotnet run
+   - dotnet run
 
 
 Authentication and Security:
-The app uses ASP.NET Core Identity for user registration, login, and secure access. 
-Roles can be assigned and book management pages are protected based on user roles.
+- The app uses ASP.NET Core Identity for user registration, login, and secure access. 
+- Roles can be assigned and book management pages are protected based on user roles.
 
 Database Configuration:
-This version uses PostgreSQL. Ensure your PostgreSQL server is running and that the connection string in 
-appsettings.json matches your environment.
+- This version uses PostgreSQL. Ensure your PostgreSQL server is running and that the connection string in appsettings.json matches your environment.
 
 NuGet Packages Used:
 - Microsoft.EntityFrameworkCore
@@ -64,7 +63,8 @@ NuGet Packages Used:
 
 
 Screenshots:
-![Admin side interface: ](images/admin_side.png)
-![User side interface: ](images/user_side.png)
+![Admin side interface: ](Images/admin_side.png)
+
+![User side interface: ](Images/client_side.png)
 
 
