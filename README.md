@@ -64,7 +64,7 @@ NuGet Packages Used:
 
 
 Screenshots:
-Admin side interface: images/admin_side.png
-User side interface: images/user_side.png
+![Admin side interface: ](images/admin_side.png)
+![User side interface: ](images/user_side.png)
 
 
